@@ -1,165 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bayes - Emil Bay</title>
-  <!--
-                     \\\ ,
-                    \ `|
-                     ) (   .-""-.
-                     | |  /_  {  '.
-                     | | (/ `\   } )
-                     | |  ^/ ^`}   {
-                     \  \ \=  ( {   )
-                      \  \ '-, {   {{
-                       \  \_.'  ) }  )
-                        \.-'   (     (
-                        /'-.'_. ) (  }
-                        \_(    {   _/\
-                         ) '--' `-;\  \
-                     _.-'       /  / /
-              <\/>_.'         .'  / /
-          <\/></\>/.  '      /<\// /
-          </\>  _ |\`- _ . -/|<// (
-       <\/>    - _- `  _.-'`_/- |  \
-       </\>        -  - -  -     \\\
-        }`<\/>                <\/>`{
-        { </\>-<\/>_<\/>_<\/>-</\> }
-        }      </\> </\> </\>      {
-     <\/>.                         <\/>
-     </\>                          </\>
-      {`<\/>                     <\/>`}
-      } </\>-<\/>_<\/>_<\/>_<\/>-</\> {
-      {      </\> </\> </\> </\>      }
-      }                               }
-      {           CATCH YA            {
-   <\/>        ON THE FLIP SIDE       <\/>
-   </\>                               </\>
-     `<\/>                          <\/>'
-      </\>-<\/>_<\/>_<\/>_<\/>_<\/>-</\>
-           </\> </\> </\> </\> </\>
-
-  (Credit: A former version of liberalalliance.dk - if you know the author, ping me!)
-  -->
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <link href='https://fonts.googleapis.com/css?family=Fjord+One|Signika:300' rel='stylesheet' type='text/css'>
   <style>
-    @font-face {
-      font-family: 'icomoon';
-      src: url('icomoon.woff?h28dtf') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    .icon-twitter,
-    .icon-github,
-    .icon-npm,
-    .icon-linkedin {
-        font-family: 'icomoon' !important;
-        speak: none;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    .icon-twitter:before {
-        content: "\e900";
-    }
-    .icon-github:before {
-        content: "\e901";
-    }
-    .icon-npm:before {
-        content: "\e902";
-    }
-    .icon-linkedin:before {
-        content: "\e903";
-    }
-
-    html {
-      background: #222;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      display: flex;
-
-      flex-direction: column;
-    	align-items: center;
-      justify-content: center;
-
-      font: 300 10px / 1.44 'Signika', sans-serif;
-      color: #ccc;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1.main {
-      font: 11.4vw 'Fjord One', serif;
-      margin: 0;
-    }
-
-    p {
-      font-size: 1.14rem;
-    }
-
-    a {
-      transition: opacity .1s;
-      text-decoration: none;
-      border-bottom: 1px solid inherit;
-    }
-    a:hover {
-      opacity: 0.80;
-    }
-
-    a[href^=mailto] {
-      color: steelblue;
-    }
-
-    a[href^=tel] {
-      color: seagreen;
-    }
-
-    a[href^=http] {
-      color: #444;
-    }
-
-    .icon-links {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      font-size: 2.4rem;
-    }
-
-    .icon {
-      display: inline-block;
-      text-indent: -9999px;
-      margin: .14rem .44rem;
-    }
-
-    .icon::before, .icon:before {
-      float: left;
-      text-indent: 0;
-    }
+  /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}body{font-family:Signika,sans-serif;color:#4d4d4c}body,p{font-size:16px;line-height:26px;line-height:1.625rem}p{font-size:1rem;margin:13px 0;margin:.8125rem 0}h1,h2,h3,h4,h5,h6{font-family:Fjord One,sans-serif;color:#343430;font-weight:700;margin:16px 0 4.8px;margin:1rem 0 .3rem}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p{margin-top:0}h1{font-size:60px;font-size:3.75rem;line-height:80px;line-height:5rem}h2{font-size:48px;font-size:3rem;line-height:64px;line-height:4rem}h3{font-size:32px;font-size:2rem;line-height:44px;line-height:2.75rem}h4{font-size:28px;font-size:1.75rem;line-height:36px;line-height:2.25rem}h5{font-size:18px;font-size:1.125rem;line-height:27px;line-height:1.6875rem}h6{font-size:16px;font-size:1rem;line-height:26px;line-height:1.625rem}a{color:#2d85ae;text-decoration:underline}a:active,a:focus,a:hover{color:#40a1ce}hr{margin:20px 0;margin:1.25rem 0;border:none;background:#eae8e4;height:1px}strong{font-weight:600;color:#343430}em{font-style:italic}.highlight{font-style:normal;background-color:#e2f1f9;box-shadow:.12em 0 0 #e2f1f9,-.12em 0 0 #e2f1f9;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1}del{text-decoration:line-through;background-color:#f9e2e2;box-shadow:.12em 0 0 #f9e2e2,-.12em 0 0 #f9e2e2;-webkit-box-decoration-break:clone;box-decoration-break:clone}del,ins{line-height:1}ins{text-decoration:none;background-color:#e2f9e2;box-shadow:.12em 0 0 #e2f9e2,-.12em 0 0 #e2f9e2;-webkit-box-decoration-break:clone;box-decoration-break:clone}dfn{font-style:normal;display:inline-block;border-bottom:1px dashed;line-height:.95}ol,ol li,ul,ul li{margin-top:8px;margin-top:.5rem;margin-bottom:8px;margin-bottom:.5rem}ol li,ul li{font-size:16px;font-size:1rem;line-height:26px;line-height:1.625rem;font-family:Signika,sans-serif}blockquote{font-size:32px;font-size:2rem;line-height:44px;line-height:2.75rem;font-weight:700;margin-left:-1em;padding-left:1em}.grid{max-width:1200px;max-width:75rem;margin:0 auto}@media (max-width:47.9375em){.grid{width:100%}}.full,.grid,.half,.quarter,.three-quarters{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.full{-webkit-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%}.three-quarters{-webkit-box-flex:0;-ms-flex:0 0 75%;flex:0 0 75%}.three-quarters>.half{-webkit-box-flex:0;-ms-flex:0 0 66.66667%;flex:0 0 66.66667%}.three-quarters>.quarter{-webkit-box-flex:0;-ms-flex:0 0 33.333333333333333%;flex:0 0 33.333333333333333%}@media (max-width:47.9375em){.three-quarters,.three-quarters>.half{-webkit-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%}.three-quarters>.quarter{-webkit-box-flex:0;-ms-flex:0 0 50%;flex:0 0 50%}}.half{-webkit-box-flex:0;-ms-flex:0 0 50%;flex:0 0 50%}.half>.full,.half>.half,.half>.three-quarters{-webkit-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%}.half>.quarter{-webkit-box-flex:0;-ms-flex:0 0 50%;flex:0 0 50%}@media (max-width:47.9375em){.half{-webkit-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%}}.quarter{-webkit-box-flex:0;-ms-flex:0 0 25%;flex:0 0 25%}.quarter>.full,.quarter>.half,.quarter>.quarter,.quarter>.three-quarters{-webkit-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%}@media (max-width:47.9375em){.quarter{-webkit-box-flex:0;-ms-flex:0 0 50%;flex:0 0 50%}}.outline-grid .full>.half+.half,.outline-grid .full>.half+.quarter,.outline-grid .full>.quarter+.half,.outline-grid .full>.quarter+.quarter,.outline-grid .full>.quarter+.three-quarters,.outline-grid .full>.three-quarters+.quarter,.outline-grid .three-quarters>.half+.quarter,.outline-grid .three-quarters>.quarter+.quarter,.outline-grid .three-quarters>.quater+.half{border-left:1px solid #e5e5e5;margin-left:-1px}.outline-grid .full+.full:before,.outline-grid .full>.full+.full:before{content:"";display:block;width:100%;height:1px;margin:0 11.2px;margin:0 .7rem;border-bottom:1px solid #e5e5e5}.outline-grid>.full h1,.outline-grid>.full h2,.outline-grid>.full h3,.outline-grid>.half h1,.outline-grid>.half h2,.outline-grid>.half h3,.outline-grid>.quarter h1,.outline-grid>.quarter h2,.outline-grid>.quarter h3{display:block;width:100%;margin:16px 11.2px 0;margin:1rem .7rem 0;line-height:1em;height:1em}@font-face{font-family:bayes-icons;src:url(fonts/bayes-icons.ttf?r6ie0j) format("truetype"),url(fonts/bayes-icons.woff?r6ie0j) format("woff");font-weight:400;font-style:normal}[class*=" icon-"]:before,[class^=icon-]:before{font-family:bayes-icons!important;speak:none;font-style:normal;font-weight:400;-webkit-font-feature-settings:normal;font-feature-settings:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-twitter:before{content:"\1f425"}.icon-github:before{content:"\1f4be"}.icon-npm:before{content:"\1f4e6"}.icon-linkedin:before{content:"\1f454"}body{margin:1.4cm;width:50em}.icon-links{text-align:right;margin:80px 0 48px;margin:5rem 0 3rem}.icon-links a{padding:16px;padding:1rem;text-decoration:none;font-size:0}.icon-links a:before{font-size:48px;font-size:3rem}p.enlarge{font-size:2em;line-height:1.44}small{font-size:inherit;opacity:.5}.inline-list{font-style:none}.inline-list li{display:inline-block;margin:0}.inline-list li a{padding:4.8px 8px;padding:.3rem .5rem}
   </style>
 </head>
 <body>
   <header>
-    <h1 class="main">Bayes</h1>
-    <p>Emil Bay · <a href="mailto:emil@bayes.dk">emil@bayes.dk</a> · <a href="tel:+610481128654">+61 (0) 481 128 654</a> <s><a href="tel:+4542955144" style="color: #555; font-size: 70%;">+45 42 955 144</a></s></p>
-  </header>
+  <h1 style="font-size: 5rem; line-height: 1.44;">Bayes</h1>
+  <p class="enlarge">
+    I'm Emil Bay, a danish <dfn title="a tinkerer; a reverse-engineer; an enthusiastic and skilful computer programmer or user">hacker</dfn> from Copenhagen, Denmark. <br>
+    I've previously worked at <a href="http://umwelt.dk">Umwelt</a>, <a href="http://compute.dtu.dk">DTU HPC</a> and <a href="http://politiken.dk">Politiken</a>.
+  </p>
+  <nav class="icon-links">
+    <a class="icon-github" href="http://github.com/emilbayes">github.com/emilbayes</a>
+    <a class="icon-twitter" href="http://twitter.com/emilbayes">@emilbayes</a>
+    <a class="icon-npm" href="http://npmjs.com/~emilbay">~emilbay</a>
+    <a class="icon-linkedin" href="https://dk.linkedin.com/in/emilbayes">in/emilbayes</a>
+  </nav>
+</header>
+<hr>
+<main>
+  <section>
+    <h2>Resume</h2>
+    <article>
+      <img src="" alt="">
+      <h3>Talk: <em>HyperJournal &mdash; A tamper-proof publishing system</em> at JSConf Australia 2016</h3>
+      <time datetime="2016-12-02">2. December 2016</time>
+        <p>I was extemely fortunate to have my proposal accepted at JSConf.</p>
+        <p>The talk brifely outlines my previous work on SNP, how information and public opinion are important instruments in warfare and the need for trustworthy, yet anonymous, journalism as outlined in Eric Smith &amp; Jared Cohen's book <em>The New Digital Age</em>.</p>
+        <p>I compress a primer on cryptography into the remaining 20 minutes, in an attempt to show how cryptography works, how to break a simple cipher, what a perfect cipher is and how to bootstrap trust.</p>
+        <p>Over the course of the talk we build up the components needed to create digital signatures, which yields a tamper-proof system.</p>
+        <p>Finally I outline open problems in implementing HyperJournal and projects working in the same space.</p>
 
+        <a href="https://github.com/emilbayes/jsconfau-2016">Slides</a> <a href="https://youtu.be/kGXpgAb3Sbk?t=2h19m24s">Youtube</a> <a href="http://2016.jsconfau.com/interviews/emil-bay/">Interview</a>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Project: SNP (Syrian News for Print-Media)</h3>
+      <time datetime="2016">2016</time>
+        <p>SNP is a collaborative project between seven Syrian news papers to unite the war-torn country. The project is sponsored by IMS.</p>
+        <p>I worked with the design laboratory Trouble to develop the WordPress website that powers their effort.</p>
+        <p>It was a very interesting challenge to optimise the website for Arabic, Right-to-Left, minimal bandwith and simplicity.</p>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>TV: Menneskejagt</h3>
+      <time datetime="2016-05">May 2016</time>
+        <p>After my article in Politken I was very fortuante to get the oppertunity to appear in the social experiment "Menneskejagt" (Manhunt), broadcast on Danish Public Service channel DR3.</p>
+        <p>The premise of the experiment was "is it possible to hide in todays survaillance society", and 6 groups of representative danes had to hide for an unknown number of weeks.</p>
+        <p>I was on the team of investigators as a "computer analyst".</p>
+        <p>My most notiable contribution was finding the leading clue for catching the most tech-savvy contestant, by conducting a network analysis of Facebook activity.</p>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Article: Sådan hackede vi Forsvarets Efterretningstjeneste</h3>
+      <time datetime="2016-04-08">8. April 2016</time>
+        <p>An interactive article I built and co-authored while at Politiken, showing how a "hacker" would work through the public challenge posted by the Danish Defence Intelligence Service for their new cyber warfare programme.</p>
+        <p>The article stayed within the top 10 most read articles for seven hours on the day it was posted, despite never making it "above the fold" on the frontpage of Politiken.dk.</p>
+        <p>Translated title: "How we cracked the Danish Defence Intelligence Service"</p>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Talk: <em>Marrying Node.js and Umbraco</em> at CodeGarden 2015</h3>
+      <time datetime="2016-06-10">10. June 2016</time>
+      <p>CodeGarden is the yearly conference for the open source .Net CMS system Umbraco. For our work on Roskilde Festival at Umwelt, a novel architecutre was designed to meet their operational demands.</p>
+      <p>This resulted in a hybrid system between Node.js and Umbraco. The presentation covers the operational specification of Roskilde Festival, how we iterated on the system design, and performance hurdles we overcame,
+        eg. how a memory leak in the caching layer of the Node.js subsystem was closed, preventing the service from crashing and yield memory savings of 10x.</p>
+        <a href="http://www.slideshare.net/RalfSohl/roskilde-festval">Slides</a> <a href="https://vimeo.com/132820898">Vimeo</a> <a href="https://umbraco.com/follow-us/blog-archive/2015/3/27/codegarden-2015-marrying-umbraco-and-nodejs/">Interview</a>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Editorial Developer at Politiken</h3>
+      <time datetime="2015-06">June 2015</time> &ndash; <time datetime="2016-06">June 2016</time>
+      <p></p>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Full-stack Developer at Umwelt</h3>
+      <time datetime="2013-08">August 2013</time> &ndash; <time datetime="2015-06">June 2015</time>
+      <p></p>
+    </article>
+    <article>
+      <img src="" alt="">
+      <h3>Hadoop Developer at DTU HPC</h3>
+      <time datetime="2014-03">March 2013</time> &ndash; <time datetime="2015-01">January 2015</time>
+      <p></p>
+    </article>
+  </section>
+  <hr>
   <section>
     <h2>Node Modules</h2>
     <p>A categorised list of Node.js modules I've written and/or maintain</p>
-    <ol>
-      <li>
+    <section class="outline-grid grid full">
+      <section class="half">
         <h3>D3</h3>
         <ul>
           <li><a href="https://github.com/politiken-journalism/d3-convention"><small>politiken-journalism/</small>d3-convention</a></li>
@@ -168,51 +106,199 @@
           <li><a href="https://github.com/emilbayes/d3-autocomplete"><small>emilbayes/</small>d3-autocomplete</a></li>
           <li><a href="https://github.com/emilbayes/d3-locale-da-dk"><small>emilbayes/</small>d3-locale-da-dk</a></li>
         </ul>
-      </li>
-      <li>
-        <h3>Utilites</h3>
+      </section>
+
+      <section class="half">
+        <h3>Math</h3>
+        <ul>
+          <li><a href="https://github.com/emilbayes/random-benchmark"><small>emilbayes/</small>random-benchmark</a></li>
+          <li><a href="https://github.com/emilbayes/range-inclusive"><small>emilbayes/</small>range-inclusive</a></li>
+          <li><a href="https://github.com/emilbayes/range-exclusive"><small>emilbayes/</small>range-exclusive</a></li>
+          <li><a href="https://github.com/politiken-journalism/scale-color-perceptual"><small>politiken-journalism/</small>scale-color-perceptual</a></li>
+        </ul>
+      </section>
+
+      <section class="half">
+        <h3>State</h3>
         <ul>
           <li><a href="https://github.com/emilbayes/auto-abort"><small>emilbayes/</small>auto-abort</a></li>
+          <li><a href="https://github.com/emilbayes/observ-set"><small>emilbayes/</small>observ-set</a></li>
+          <li><a href="https://github.com/emilbayes/sim-timer"><small>emilbayes/</small>sim-timer</a></li>
+          <li><a href="https://github.com/politiken-journalism/tuple-encoding"><small>politiken-journalism/</small>tuple-encoding</a></li>
+        </ul>
+      </section>
+
+      <section class="half">
+        <h3>UI</h3>
+        <ul>
+          <li><a href="https://github.com/emilbayes/dom-details-fallback"><small>emilbayes/</small>dom-details-fallback</a></li>
+          <li><a href="https://github.com/umweltdk/node-text-content-stream"><small>umweltdk/node-</small>text-content-stream</a></li>
+          <li><a href="https://github.com/emilbayes/css-pipeline"><small>emilbayes/</small>css-pipeline </a></li>
+        </ul>
+      </section>
+
+      <section class="half">
+        <h3>Utilites</h3>
+        <ul>
           <li><a href="https://github.com/emilbayes/is-http-url"><small>emilbayes/</small>is-http-url</a></li>
           <li><a href="https://github.com/emilbayes/is-domain-name"><small>emilbayes/</small>is-domain-name</a></li>
           <li><a href="https://github.com/emilbayes/object-tojson"><small>emilbayes/</small>object-tojson</a></li>
           <li><a href="https://github.com/emilbayes/object-transpose"><small>emilbayes/</small>object-transpose</a></li>
           <li><a href="https://github.com/politiken-journalism/retry-fn"><small>politiken-journalism/</small>retry-fn</a></li>
+          <li><a href="https://github.com/emilbayes/grunt-git-commits"><small>emilbayes/</small>grunt-git-commits</a></li>
+          <li><a href="https://github.com/emilbayes/buffer-byte-frequency"><small>emilbayes/</small>buffer-byte-frequency</a></li>
+          <li><a href="https://github.com/emilbayes/buffer-compare-numeric"><small>emilbayes/</small>buffer-compare-numeric</a></li>
         </ul>
-      </li>
+      </section>
 
-      <li>
-        <h3>State</h3>
+      <section class="half">
+        <h3>Security/Cryptography</h3>
         <ul>
-          <li><a href="https://github.com/emilbayes/observ-set"><small>emilbayes/</small>observ-set</a></li>
-          <li><a href="https://github.com/emilbayes/sim-timer"><small>emilbayes/</small>sim-timer</a></li>
-          <li><a href="https://github.com/politiken-journalism/tuple-encoding"><small>politiken-journalism/</small>tuple-encoding</a></li>
+          <li><a href="https://github.com/emilbayes/double-hmac"><small>emilbayes/</small>double-hmac</a></li>
+          <li><a href="https://github.com/emilbayes/eff-diceware-passphrase"><small>emilbayes/</small>eff-diceware-passphrase</a></li>
+          <li><a href="https://github.com/emilbayes/mindvault"><small>emilbayes/</small>mindvault</a></li>
+          <li><a href="https://github.com/emilbayes/secure-random-uniform "><small>emilbayes/</small>secure-random-uniform </a></li>
+          <li><a href="https://github.com/emilbayes/secure-sample"><small>emilbayes/</small>secure-sample</a></li>
+          <li><a href="https://github.com/emilbayes/secure-shuffle"><small>emilbayes/</small>secure-shuffle</a></li>
         </ul>
-      </li>
-
-      <li>
-        <h3>UI</h3>
-        <ul>
-          <li><a href="https://github.com/emilbayes/dom-details-fallback"><small>emilbayes/</small>dom-details-fallback</a></li>
-          <li><a href="https://github.com/umweltdk/node-text-content-stream"><small>umweltdk/node-</small>text-content-stream</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <h3>Math</h3>
-        <ul>
-          <li><a href="https://github.com/emilbayes/random-benchmark"><small>emilbayes/</small>random-benchmark</a></li>
-          <li><a href="https://github.com/emilbayes/range-inclusive"><small>emilbayes/</small>range-inclusive</a></li>
-          <li><a href="https://github.com/politiken-journalism/scale-color-perceptual"><small>politiken-journalism/</small>scale-color-perceptual</a></li>
-        </ul>
-      </li>
-    </ol>
+      </section>
+    </ul>
   </section>
-  <nav class="icon-links">
-    <a class="icon icon-github" href="http://github.com/emilbayes">github.com/emilbayes</a>
-    <a class="icon icon-twitter" href="http://twitter.com/emilbayes">@emilbayes</a>
-    <a class="icon icon-npm" href="http://npmjs.com/~emilbay">~emilbay</a>
-    <a class="icon icon-linkedin" href="https://dk.linkedin.com/in/emilbayes">in/emilbayes</a>
-  </nav>
+  <hr>
+  <section>
+    <h2>Open Source</h2>
+    <p>Open Source projects I've contributed patches, features, documentation or resolved bugs</p>
+    <ul class="inline-list">
+      <li>
+        <a href="https://github.com/mafintosh/sodium-native"><small>mafintosh/</small>sodium-native</a>
+      </li>
+      <li>
+        <a href="https://github.com/mafintosh/hypervision"><small>mafintosh/</small>hypervision</a>
+      </li>
+      <li>
+        <a href="https://github.com/feross/buffer"><small>feross/</small>buffer</a>
+      </li>
+      <li>
+        <a href="https://github.com/ssbc/ssb-keys"><small>ssbc/</small>ssb-keys</a>
+      </li>
+      <li>
+        <a href="https://github.com/substack/hyperx"><small>substack/</small>hyperx</a>
+      </li>
+      <li>
+        <a href="https://github.com/substack/node-browserify"><small>substack/</small>node-browserify</a>
+      </li>
+      <li>
+        <a href="https://github.com/yoshuawuyts/choo"><small>yoshuawuyts/</small>choo</a>
+      </li>
+      <li>
+        <a href="https://github.com/mmckegg/ferment"><small>mmckegg/</small>ferment</a>
+      </li>
+      <li>
+        <a href="https://github.com/feross/electron-workshop"><small>feross/</small>electron-workshop</a>
+      </li>
+      <li>
+        <a href="https://github.com/mafintosh/flush-write-stream"><small>mafintosh/</small>flush-write-stream</a>
+      </li>
+      <li>
+        <a href="https://github.com/mafintosh/sodium-signatures"><small>mafintosh/</small>sodium-signatures</a>
+      </li>
+      <li>
+        <a href="https://github.com/AndreasMadsen/talk-benchmaking-nodejs-with-statistics"><small>AndreasMadsen/</small>talk-benchmaking-nodejs-with-statistics</a>
+      </li>
+      <li>
+        <a href="https://github.com/jemc/pony-sodium"><small>jemc/</small>pony-sodium</a>
+      </li>
+      <li>
+        <a href="https://github.com/mattdesl/simple-html-index"><small>mattdesl/</small>simple-html-index</a>
+      </li>
+      <li>
+        <a href="https://github.com/datproject/docs"><small>datproject/</small>docs</a>
+      </li>
+      <li>
+        <a href="https://github.com/watson/awesome-computer-history"><small>watson/</small>awesome-computer-history</a>
+      </li>
+      <li>
+        <a href="https://github.com/AndreasMadsen/dprof"><small>AndreasMadsen/</small>dprof</a>
+      </li>
+      <li>
+        <a href="https://github.com/outlandishideas/wpackagist"><small>outlandishideas/</small>wpackagist</a>
+      </li>
+      <li>
+        <a href="https://github.com/jakiestfu/himawari.js"><small>jakiestfu/</small>himawari.js</a>
+      </li>
+      <li>
+        <a href="https://github.com/AndreasMadsen/endpoint"><small>AndreasMadsen/</small>endpoint</a>
+      </li>
+      <li>
+        <a href="https://github.com/GeenenTijd/dotify"><small>GeenenTijd/</small>dotify</a>
+      </li>
+      <li>
+        <a href="https://github.com/thunklife/fn-compose"><small>thunklife/</small>fn-compose</a>
+      </li>
+      <li>
+        <a href="https://github.com/maxogden/ndjson"><small>maxogden/</small>ndjson</a>
+      </li>
+      <li>
+        <a href="https://github.com/GitbookIO/documentation"><small>GitbookIO/</small>documentation</a>
+      </li>
+      <li>
+        <a href="https://github.com/JuliaStats/DataFrames.jl"><small>JuliaStats/</small>DataFrames.jl</a>
+      </li>
+      <li>
+        <a href="https://github.com/componitable/format-number"><small>componitable/</small>format-number</a>
+      </li>
+      <li>
+        <a href="https://github.com/maxogden/wzrd"><small>maxogden/</small>wzrd</a>
+      </li>
+      <li>
+        <a href="https://github.com/segmentio/batch-stream"><small>segmentio/</small>batch-stream</a>
+      </li>
+      <li>
+        <a href="https://github.com/beaugunderson/node-poisson-disc-sampler"><small>beaugunderson/</small>node-poisson-disc-sampler</a>
+      </li>
+      <li>
+        <a href="https://github.com/5thWall/mustache-render"><small>5thWall/</small>mustache-render</a>
+      </li>
+      <li>
+        <a href="https://github.com/AndreasMadsen/xorshift"><small>AndreasMadsen/</small>xorshift</a>
+      </li>
+      <li>
+        <a href="https://github.com/mikefrey/grunt-exorcise"><small>mikefrey/</small>grunt-exorcise</a>
+      </li>
+      <li>
+        <a href="https://github.com/battlejj/express-force-ssl"><small>battlejj/</small>express-force-ssl</a>
+      </li>
+      <li>
+        <a href="https://github.com/eslint/eslint"><small>eslint/</small>eslint</a>
+      </li>
+      <li>
+        <a href="https://github.com/adamchainz/SublimeHTMLMustache"><small>adamchainz/</small>SublimeHTMLMustache</a>
+      </li>
+      <li>
+        <a href="https://github.com/hughsk/fql-node"><small>hughsk/</small>fql-node</a>
+      </li>
+      <li>
+        <a href="https://github.com/mafintosh/node-modules"><small>mafintosh/</small>node-modules</a>
+      </li>
+      <li>
+        <a href="https://github.com/jimhigson/oboe.js"><small>jimhigson/</small>oboe.js</a>
+      </li>
+      <li>
+        <a href="https://github.com/sandy98/node-simple-router"><small>sandy98/</small>node-simple-router</a>
+      </li>
+      <li>
+        <a href="https://github.com/fabiensanglard/chocolate_duke3D"><small>fabiensanglard/</small>chocolate_duke3D</a>
+      </li>
+      <li>
+        <a href="https://github.com/zurb/foundation-sites"><small>zurb/</small>foundation-sites</a>
+      </li>
+    </ul>
+  </section>
+</main>
+<script>
+  !function(){"use strict";function e(e){var t=document.createElement("style");t.innerHTML=e,document.head.appendChild(t)}window.loadFont=function(t){var n;try{n=window.localStorage.getItem(t)}catch(o){}if(n)return e(n);var a=new window.XMLHttpRequest;a.open("GET",t,!0),a.onreadystatechange=function(){if(4===a.readyState&&a.status<300){try{window.localStorage.setItem(t,a.responseText)}catch(n){}return e(a.responseText)}},a.send()}}();
+  loadFont('https://fonts.googleapis.com/css?family=Fjord+One|Signika:300,600');
+  loadFont('https://fonts.googleapis.com/earlyaccess/notokufiarabic.css');
+</script>
 </body>
 </html>
